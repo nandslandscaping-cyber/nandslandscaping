@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N&S Landscaping</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green-dark: #1b4332;
+    --green-mid: #2d6a4f;
+    --green-bright: #52b788;
+    --lime: #95d5b2;
+    --orange: #f77f00;
+    --amber: #fcbf49;
+    --cream: #fefae0;
+    --white: #ffffff;
+    --black: #0d1b0e;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--cream);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: var(--green-dark);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--amber);
+    letter-spacing: 2px;
+  }
+  .nav-logo span { color: var(--lime); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--cream);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+  .nav-cta {
+    background: var(--orange);
+    color: var(--white) !important;
+    padding: 0.6rem 1.5rem;
+    border-radius: 2px;
+  }
+  .nav-cta:hover { background: var(--amber); color: var(--black) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--green-dark);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding-top: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 120px;
+    background: var(--cream);
+    clip-path: polygon(0 100%, 100% 100%, 100% 30%, 0 100%);
+  }
+  .hero-content { padding: 5rem 4rem 5rem 5rem; position: relative; z-index: 2; }
+  .hero-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 7.5rem;
+    line-height: 0.9;
+    color: var(--white);
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 .accent { color: var(--amber); display: block; }
+  .hero p {
+    color: var(--lime);
+    font-size: 1.15rem;
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--orange);
+    color: var(--white);
+    padding: 1rem 2.2rem;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    transition: transform 0.2s, background 0.2s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
+  }
+  .btn-primary:hover { background: var(--amber); transform: translateY(-2px); }
+  .btn-secondary {
+    border: 2px solid var(--lime);
+    color: var(--lime);
+    padding: 1rem 2.2rem;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: var(--lime); color: var(--green-dark); }
+  .hero-visual {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+  }
+  .hero-img-bg {
+    width: 100%; height: 100%;
+    background:
+      linear-gradient(135deg, rgba(27,67,50,0.4) 0%, rgba(27,67,50,0.1) 100%),
+      url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80') center/cover no-repeat;
+  }
+  .hero-stats {
+    position: absolute;
+    bottom: 180px; left: -30px;
+    display: flex; gap: 0; z-index: 5;
+  }
+  .stat-card {
+    background: var(--amber);
+    padding: 1.2rem 1.8rem;
+    text-align: center;
+    border-right: 2px solid var(--orange);
+  }
+  .stat-card:last-child { background: var(--orange); border-right: none; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--green-dark);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    margin-top: 2px;
+  }
+
+  /* SERVICES */
+  .services { padding: 7rem 5rem; background: var(--cream); }
+  .section-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4.5rem;
+    line-height: 1;
+    color: var(--green-dark);
+    margin-bottom: 0.5rem;
+  }
+  .section-title span { color: var(--orange); }
+  .section-sub {
+    color: var(--green-mid);
+    font-size: 1.05rem;
+    max-width: 500px;
+    margin-bottom: 3.5rem;
+    line-height: 1.6;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .service-card {
+    background: var(--white);
+    border-top: 4px solid var(--green-bright);
+    padding: 2rem 1.8rem;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card:nth-child(2) { border-top-color: var(--orange); }
+  .service-card:nth-child(3) { border-top-color: var(--amber); }
+  .service-card:nth-child(4) { border-top-color: var(--amber); }
+  .service-card:nth-child(5) { border-top-color: var(--green-bright); }
+  .service-card:nth-child(6) { border-top-color: var(--orange); }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(27,67,50,0.15); }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 80px; height: 80px;
+    background: var(--cream);
+    border-radius: 100% 0 0 0;
+  }
+  .service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .service-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--green-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+  }
+  .service-card p {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* WHY US */
+  .why-us {
+    background: var(--green-dark);
+    padding: 7rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .why-us::before {
+    content: 'WHY US';
+    position: absolute;
+    top: -0.5rem; right: -2rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14rem;
+    color: rgba(255,255,255,0.04);
+    letter-spacing: -5px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .why-content .section-tag { color: var(--amber); }
+  .why-content .section-title { color: var(--white); }
+  .why-content .section-title span { color: var(--amber); }
+  .why-content .section-sub { color: var(--lime); }
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
+  .feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    color: var(--cream);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .feature-icon {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    background: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    clip-path: polygon(15% 0%, 85% 0%, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0% 85%, 0% 15%);
+  }
+  .why-visual {
+    position: relative;
+    height: 500px;
+  }
+  .why-img {
+    width: 85%; height: 100%;
+    object-fit: cover;
+    background: url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=700&q=80') center/cover no-repeat;
+    border-radius: 2px;
+  }
+  .why-accent-box {
+    position: absolute;
+    bottom: -20px; right: -10px;
+    width: 180px;
+    background: var(--amber);
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .why-accent-box .big-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: var(--green-dark);
+    line-height: 1;
+  }
+  .why-accent-box p {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--green-dark);
+    margin-top: 4px;
+  }
+
+  /* PROCESS */
+  .process { padding: 7rem 5rem; background: var(--white); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 3.5rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 10%;
+    width: 80%; height: 3px;
+    background: linear-gradient(to right, var(--green-bright), var(--amber), var(--orange));
+  }
+  .step {
+    text-align: center;
+    padding: 0 1.5rem;
+    position: relative;
+  }
+  .step-num {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.2rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    position: relative; z-index: 2;
+  }
+  .step:nth-child(1) .step-num { background: var(--green-bright); color: var(--green-dark); }
+  .step:nth-child(2) .step-num { background: var(--amber); color: var(--green-dark); }
+  .step:nth-child(3) .step-num { background: var(--orange); color: var(--white); }
+  .step:nth-child(4) .step-num { background: var(--green-dark); color: var(--amber); }
+  .step h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--green-dark);
+    margin-bottom: 0.5rem;
+  }
+  .step p { color: #666; font-size: 0.9rem; line-height: 1.5; }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 7rem 5rem; background: var(--cream); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .testimonial-card {
+    background: var(--white);
+    padding: 2rem;
+    border-left: 5px solid var(--green-bright);
+    position: relative;
+  }
+  .testimonial-card:nth-child(2) { border-left-color: var(--orange); transform: translateY(-10px); }
+  .testimonial-card:nth-child(3) { border-left-color: var(--amber); }
+  .quote-mark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: var(--cream);
+    line-height: 0.5;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .testimonial-card p {
+    color: #444;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .reviewer { display: flex; align-items: center; gap: 0.8rem; }
+  .reviewer-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--white);
+  }
+  .t1 .reviewer-avatar { background: var(--green-mid); }
+  .t2 .reviewer-avatar { background: var(--orange); }
+  .t3 .reviewer-avatar { background: var(--amber); color: var(--green-dark); }
+  .reviewer-info strong { display: block; font-size: 0.9rem; color: var(--green-dark); }
+  .reviewer-info span { font-size: 0.8rem; color: #888; }
+  .stars { color: var(--amber); font-size: 0.85rem; margin-bottom: 0.5rem; }
+
+  /* CTA */
+  .cta-section {
+    background: var(--orange);
+    padding: 6rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 200%; height: 160px;
+    background: var(--cream);
+    clip-path: ellipse(50% 80px at 50% 0);
+  }
+  .cta-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: var(--white);
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+  }
+  .cta-section p {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.15rem;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+  }
+  .btn-white {
+    background: var(--white);
+    color: var(--orange);
+    padding: 1.1rem 3rem;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    transition: all 0.2s;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+  }
+  .btn-white:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 rgba(0,0,0,0.2); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    color: var(--cream);
+    padding: 4rem 5rem 2rem;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .footer-brand .nav-logo { font-size: 2.5rem; display: block; margin-bottom: 1rem; }
+  .footer-brand p { color: #888; font-size: 0.9rem; line-height: 1.7; max-width: 280px; }
+  .footer-col h5 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--amber);
+    margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col ul a { color: #888; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .footer-col ul a:hover { color: var(--lime); }
+  .footer-bottom {
+    border-top: 1px solid #222;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #555;
+  }
+
+  /* SCROLL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 4.5rem; }
+    .hero-visual { height: 350px; }
+    .hero-content { padding: 6rem 2rem 3rem; }
+    .services, .why-us, .process, .testimonials, .cta-section, footer { padding: 4rem 2rem; }
+    .services-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">N&S <span>Landscaping</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why-us">About</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🌿 Professional Landscaping</div>
+    <h1>YOUR YARD. <span class="accent">TRANSFORMED.</span></h1>
+    <p>From lush garden designs to complete outdoor makeovers — N&S Landscaping turns ordinary properties into extraordinary spaces you'll love every single day.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Get Free Quote</a>
+      <a href="#services" class="btn-secondary">Our Services</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-img-bg"></div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Projects Done</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-tag">What We Offer</div>
+  <h2 class="section-title">OUR <span>SERVICES</span></h2>
+  <p class="section-sub">Everything your outdoor space needs, handled by experts who genuinely care about the result.</p>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-icon">🌿</span>
+      <h3>Lawn Care & Maintenance</h3>
+      <p>Regular mowing, edging, fertilizing, and seasonal treatments to keep your lawn thick, green, and healthy all year round.</p>
+    </div>
+    <div class="service-card reveal" style="transition-delay: 0.1s">
+      <span class="service-icon">🏡</span>
+      <h3>Landscape Design</h3>
+      <p>Custom designs tailored to your home's style and your lifestyle — beautiful, functional outdoor living spaces.</p>
+    </div>
+    <div class="service-card reveal" style="transition-delay: 0.2s">
+      <span class="service-icon">🌳</span>
+      <h3>Tree & Shrub Trimming</h3>
+      <p>Professional shaping, pruning, and removal services that keep your trees and shrubs looking their absolute best.</p>
+    </div>
+    <div class="service-card reveal" style="transition-delay: 0.3s">
+      <span class="service-icon">💧</span>
+      <h3>Irrigation Systems</h3>
+      <p>Smart, water-efficient irrigation installation and maintenance that keeps everything lush while lowering your water bill.</p>
+    </div>
+    <div class="service-card reveal" style="transition-delay: 0.4s">
+      <span class="service-icon">🪨</span>
+      <h3>Hardscaping</h3>
+      <p>Patios, walkways, retaining walls, and decorative stone work that adds structure and elegance to any outdoor space.</p>
+    </div>
+    <div class="service-card reveal" style="transition-delay: 0.5s">
+      <span class="service-icon">❄️</span>
+      <h3>Seasonal Clean-Up</h3>
+      <p>Spring and fall clean-up services — leaf removal, bed prep, and everything needed to transition your yard beautifully.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us" id="why-us">
+  <div class="why-grid">
+    <div class="why-content reveal-left">
+      <div class="section-tag">Why Choose Us</div>
+      <h2 class="section-title">WE MAKE YOUR <span>OUTDOORS</span> SHINE</h2>
+      <p class="section-sub">We're not just lawn guys — we're passionate outdoor designers who treat every property like our own.</p>
+      <ul class="feature-list">
+        <li>
+          <div class="feature-icon">✓</div>
+          <div><strong>Licensed & Fully Insured</strong> — Every technician is certified and your property is always protected.</div>
+        </li>
+        <li>
+          <div class="feature-icon">⭐</div>
+          <div><strong>5-Star Rated Service</strong> — Hundreds of happy homeowners across the region trust us year after year.</div>
+        </li>
+        <li>
+          <div class="feature-icon">💬</div>
+          <div><strong>Transparent Pricing</strong> — No surprise charges. You'll always know exactly what you're paying for.</div>
+        </li>
+        <li>
+          <div class="feature-icon">🕐</div>
+          <div><strong>On-Time, Every Time</strong> — We show up when we say we will and finish what we start.</div>
+        </li>
+        <li>
+          <div class="feature-icon">♻️</div>
+          <div><strong>Eco-Friendly Practices</strong> — We use sustainable, environmentally responsible products and methods.</div>
+        </li>
+      </ul>
+    </div>
+    <div class="why-visual reveal-right">
+      <div class="why-img"></div>
+      <div class="why-accent-box">
+        <div class="big-num">98%</div>
+        <p>Customer Satisfaction Rate</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-tag">How It Works</div>
+  <h2 class="section-title reveal">GET STARTED IN <span>4 STEPS</span></h2>
+  <p class="section-sub reveal">Simple and hassle-free from first call to finished yard.</p>
+  <div class="process-steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <h4>Free Consultation</h4>
+      <p>Tell us about your space, your goals, and your budget. No commitment required.</p>
+    </div>
+    <div class="step reveal" style="transition-delay: 0.15s">
+      <div class="step-num">02</div>
+      <h4>Custom Proposal</h4>
+      <p>We create a detailed plan and clear pricing — everything laid out upfront.</p>
+    </div>
+    <div class="step reveal" style="transition-delay: 0.3s">
+      <div class="step-num">03</div>
+      <h4>We Get to Work</h4>
+      <p>Our expert crew arrives on time and executes the plan with care and precision.</p>
+    </div>
+    <div class="step reveal" style="transition-delay: 0.45s">
+      <div class="step-num">04</div>
+      <h4>You Love It</h4>
+      <p>We walk through everything together and don't leave until you're 100% happy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-tag">Happy Customers</div>
+  <h2 class="section-title reveal">WHAT PEOPLE <span>SAY</span></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card t1 reveal">
+      <span class="quote-mark">"</span>
+      <div class="stars">★★★★★</div>
+      <p>GreenForce completely transformed our backyard. What used to be a sad patch of dirt is now an incredible garden space. Couldn't be happier with the results.</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">MR</div>
+        <div class="reviewer-info">
+          <strong>Marcus R.</strong>
+          <span>Homeowner, Philadelphia</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card t2 reveal" style="transition-delay: 0.15s">
+      <span class="quote-mark">"</span>
+      <div class="stars">★★★★★</div>
+      <p>Professional, punctual, and the results speak for themselves. My lawn has never looked better. The team is friendly and clearly passionate about what they do.</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">SL</div>
+        <div class="reviewer-info">
+          <strong>Sandra L.</strong>
+          <span>Property Manager</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card t3 reveal" style="transition-delay: 0.3s">
+      <span class="quote-mark">"</span>
+      <div class="stars">★★★★★</div>
+      <p>Used them for a complete hardscape project — new patio, walkway, the works. Every detail was perfect. The pricing was fair and transparent the whole way through.</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">DK</div>
+        <div class="reviewer-info">
+          <strong>Derek K.</strong>
+          <span>Homeowner, Cherry Hill</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <h2>READY TO TRANSFORM YOUR YARD?</h2>
+  <p>Get your free, no-obligation quote today. We'll come out, take a look, and give you a clear plan and price — no pressure.</p>
+  <a href="tel:+12155550123" class="btn-white">📞 Call (215) 555-0123</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="nav-logo">N&S <span>Landscaping</span></span>
+      <p>Serving the Greater Philadelphia area with professional landscaping services since 2012. Your outdoor space deserves the best.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#">Lawn Care</a></li>
+        <li><a href="#">Landscape Design</a></li>
+        <li><a href="#">Tree Trimming</a></li>
+        <li><a href="#">Irrigation</a></li>
+        <li><a href="#">Hardscaping</a></li>
+        <li><a href="#">Seasonal Clean-Up</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Work</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:+12155550123">(215) 555-0123</a></li>
+        <li><a href="mailto:hello@nslandscaping.com">hello@nslandscaping.com</a></li>
+        <li><a href="#">Philadelphia, PA</a></li>
+        <li><a href="#">Mon–Sat: 7am – 6pm</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 N&S Landscaping. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Service</span>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
